@@ -30,7 +30,7 @@ class Empleado:
     
     @email.setter
     def email(self, new: str):
-        self.email = new
+        self._email = new
     
     @property
     def departamento(self):
