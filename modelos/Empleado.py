@@ -14,7 +14,10 @@ class Empleado:
     
     @nombre.setter
     def nombre(self, new: str):
-        self._nombre = new
+        if not isinstance(new, str) or len(new.strip()) < 3:
+            raise ValueError("el nombre debe tener minimo 3 letras")
+        
+        self._nombre = new.strip().title()
     
     @property
     def rut(self):
@@ -22,7 +25,10 @@ class Empleado:
     
     @rut.setter
     def rut(self, new: str):
-        self._rut = new
+        if not isinstance(new, str) or not new.strip():
+            raise ValueError("no puede estar vacio")
+        
+        self._rut = new.strip().upper()
     
     @property
     def email(self):

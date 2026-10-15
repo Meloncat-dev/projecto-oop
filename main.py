@@ -6,7 +6,4 @@ empleado2 = emp.Empleado("carl", "22222222-8", "caremp@comp.cl", 2)
 
 ventas = dep.Departamento("ventas", 1)
 
-ventas.empleados.append(empleado1)
-ventas.empleados.append(empleado2)
-
 print(ventas)
