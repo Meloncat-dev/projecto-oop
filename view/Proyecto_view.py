@@ -6,7 +6,12 @@ class Proyecto_view:
     def menu() -> int:
         print("\n" + "#"*7 + "-"*30 + "#"*7)
         print("|" + " "*5 + "Proyectos: Gestion" + " "*19 + "|")
-        print("|" + " "*8 + "1." + " "*19 + "|")
+        print("|" + " "*8 + "1. agregar proyecto" + " "*15 + "|")
+        print("|" + " "*8 + "2. editar proyecto" + " "*16 + "|")
+        print("|" + " "*8 + "3. eliminar proyecto" + " "*14 + "|")
+        print("|" + " "*8 + "4. imprimir proyecto" + " "*14 + "|")
+        print("|" + " "*8 + "5. imprimir todos los proyectos" + " "*3 + "|")
+        print("|" + " "*8 + "0. volver al menu principal" + " "*7 + "|")
         print("#"*7 + "-"*30 + "#"*7)
         
-        return leer_numero("ingrese una opcion")
+        return leer_numero("ingrese una opcion: ")

@@ -1,3 +1,3 @@
-from view.Proyecto_view import Proyecto_view
+from view.Main_view import Main_view
 
-Proyecto_view.menu()
+Main_view.menu()
