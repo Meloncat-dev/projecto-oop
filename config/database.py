@@ -38,6 +38,7 @@ class Database:
                     email TEXT NOT NULL UNIQUE,
                     id_departamento INTEGER,
                     FOREIGN KEY (id_departamento) REFERENCES departamento (id_departamento)
+                    ON DELETE SET NULL
                 )
             """)
 
@@ -50,6 +51,7 @@ class Database:
                     horas_trabajadas REAL NOT NULL,
                     descripcion_tarea TEXT,
                     FOREIGN KEY (id_empleado) REFERENCES empleado (id_empleado)
+                    ON DELETE RESTRICT
                 )
             """)
 
@@ -71,8 +73,10 @@ class Database:
                     
                     PRIMARY KEY (id_empleado, id_proyecto),
                     
-                    FOREIGN KEY (id_empleado) REFERENCES empleado (id_empleado),
+                    FOREIGN KEY (id_empleado) REFERENCES empleado (id_empleado)
+                    ON DELETE CASCADE,
                     FOREIGN KEY (id_proyecto) REFERENCES proyecto (id_proyecto)
+                    ON DELETE CASCADE
                 )
             """)
 

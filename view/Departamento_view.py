@@ -16,3 +16,7 @@ class Departamento_view:
         
         return leer_numero("ingrese una opcion: ")
     
+    @staticmethod
+    def mensaje(msg: str) -> None:
+        print(f"[Departamentos]: {msg}")
+    

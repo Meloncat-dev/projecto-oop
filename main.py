@@ -1,3 +1,12 @@
-from view.Main_view import Main_view
+from controller.Main_controller import Main_controller
+from config.database import Database
 
-Main_view.menu()
+def main():
+    db = Database()
+    db.init_db()
+    
+    app = Main_controller()
+    app.ejecutar()
+    
+if __name__ == "__main__":
+    main()

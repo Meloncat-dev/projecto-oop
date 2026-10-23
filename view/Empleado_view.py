@@ -15,3 +15,7 @@ class Empleado_view:
         print("|" + " "*8 + "0. volver al menu principal" + " "*7 + "|")
         print("#"*7 + "-"*30 + "#"*7)
         return leer_numero("ingrese una opcion: ")
+    
+    @staticmethod
+    def mensaje(msg: str) -> None:
+        print(f"[Empleados]: {msg}")

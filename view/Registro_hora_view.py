@@ -15,3 +15,7 @@ class Resgistro_hora_view:
         print("#"*7 + "-"*36 + "#"*7)
         
         return leer_numero("ingrese una opcion: ")
+    
+    @staticmethod
+    def mensaje(msg: str) -> None:
+        print(f"[Registros Hora]: {msg}")
