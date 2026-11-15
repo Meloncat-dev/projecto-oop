@@ -3,8 +3,6 @@ from modelos import Empleado
 class Departamento:
     def __init__(self, nombre: str, id_departamento: int | None = None):
         self.nombre = nombre
-        if not isinstance(id_departamento, int):
-            raise TypeError("el id debe ser un int")
         self.id_departamento = id_departamento
     
     @property

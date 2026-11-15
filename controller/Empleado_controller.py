@@ -1,4 +1,6 @@
+from modelos.Empleado import Empleado
 from view.Empleado_view import Empleado_view
+from modelos.Empleado_dao import Empleado_dao
 
 class Empleado_controller:
     def __init__(self):

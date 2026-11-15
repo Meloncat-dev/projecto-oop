@@ -15,6 +15,7 @@ class Empleado_dao:
                 (nombre, rut, email, id_departamento) VALUES (?, ?, ?, ?)
             """, (empleado.nombre, empleado.rut, empleado.email, dpto_id))
             conn.commit()
+            empleado.id_empleado = cursor.lastrowid
             return True
         except Exception as e:
             print(f"err:: no se pudo crear el empleado ::err = {e}")
@@ -59,7 +60,7 @@ class Empleado_dao:
             conn.close()
     
     @staticmethod
-    def obtene_por_id(id: int) -> Empleado:
+    def obtener_por_id(id: int) -> Empleado:
         conn = Database().get_connection()
         empleado = None
         try:
@@ -85,7 +86,7 @@ class Empleado_dao:
         return empleado
     
     @staticmethod
-    def obtener_todo() -> list[Empleado]:
+    def obtener_todos() -> list[Empleado]:
         conn = Database().get_connection()
         Empleados: list[Empleado] = []
         

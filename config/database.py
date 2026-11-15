@@ -42,18 +42,6 @@ class Database:
                 )
             """)
 
-            # Tabla RegistroHoras
-            cursor.execute("""
-                CREATE TABLE IF NOT EXISTS registro_horas (
-                    id_registro INTEGER PRIMARY KEY AUTOINCREMENT,
-                    id_empleado INTEGER,
-                    fecha TEXT NOT NULL,
-                    horas_trabajadas REAL NOT NULL,
-                    descripcion_tarea TEXT,
-                    FOREIGN KEY (id_empleado) REFERENCES empleado (id_empleado)
-                    ON DELETE RESTRICT
-                )
-            """)
 
             # Tabla Proyecto
             cursor.execute("""
@@ -80,6 +68,22 @@ class Database:
                 )
             """)
 
+            # Tabla RegistroHoras
+            cursor.execute("""
+                CREATE TABLE IF NOT EXISTS registro_horas (
+                    id_registro INTEGER PRIMARY KEY AUTOINCREMENT,
+                    id_empleado INTEGER,
+                    id_proyecto INTEGER,
+                    fecha TEXT NOT NULL,
+                    horas_trabajadas REAL NOT NULL,
+                    descripcion_tarea TEXT,
+                    FOREIGN KEY (id_empleado) REFERENCES empleado (id_empleado)
+                    ON DELETE RESTRICT,
+                    FOREIGN KEY (id_proyecto) REFERENCES proyecto (id_proyecto)
+                    ON DELETE RESTRICT
+                )
+            """)
+            
             conn.commit()
         except sqlite3.Error as e:
             print(f"Error al inicializar la base de datos: {e}")
