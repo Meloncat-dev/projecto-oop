@@ -24,72 +24,53 @@ class Proyecto_view:
         print(f"[Proyectos]: {msg}")
 
     @staticmethod
-    def formular_proyecto() -> dict:
-        print("\n------- AGREGAR PROYECTO -------")
-        nombre = input("Ingrese el nombre del proyecto: ")
-        presupuesto = input("Ingrese el presupuesto: ")
-        fecha_inicio = input("Ingrese la fecha de inicio (AAAA-MM-DD): ")
-        descripcion = input("Ingrese una descripción: ")
-
+    def formular_proyecto():
+        print("\n" + "-"*7 + "AGREGAR PROYECTO" + "-"*7)
+        nombre = input("ingrese un nombre: ")
+        presupuesto = leer_numero("ingrese un presupuesto: ")
+        fecha_inicio = input("ingrese una fecha: ")
+        descripcion = input("describa el proyecto: ")
+        
         return {
             "nombre": nombre,
             "presupuesto": presupuesto,
-            "fecha_inicio": fecha_inicio,
+            "fecha inicio": fecha_inicio,
             "descripcion": descripcion
         }
-
+    
     @staticmethod
-    def solicitar_id() -> int:
-        return leer_numero("Ingrese un ID: ")
-
+    def formular_actualizacion(proyect: Proyecto):
+        print("\n" + "-"*7 + "ACTUALIZAR PROYECTO" "-"*7)
+        nuevo_nombre = input(f"nombre actual ({proyect.nombre}): ")
+        
+        nuevo_presupuesto = leer_numero(f"presupuesto actual (${proyect.presupuesto}): ")
+        
+        nueva_fecha_inicio = input(f"fecha actual ({proyect.fecha_inicio})")
+        
+        nueva_descripcion = input(f"descripcion actual ({proyect.descripcion})")
+        
+        return {
+            "nombre": nuevo_nombre,
+            "presupuesto": nuevo_presupuesto,
+            "fecha inicio": nueva_fecha_inicio,
+            "descripcion": nueva_descripcion
+        }
+    
     @staticmethod
-    def mostrar_proyecto(proyecto: Proyecto) -> None:
-        print("\n------- DATOS DEL PROYECTO -------")
-        print(proyecto)
-        print("-" * 36)
-
+    def confirmar_eliminacion(proyecto: Proyecto) -> bool:
+        return confirmar(f"desea eliminar el proyecto {proyecto.nombre}: ")
+    
     @staticmethod
-    def mostrar_lista(proyectos: list[Proyecto]) -> None:
-        print("\n------- PROYECTOS -------")
-        if not proyectos:
-            print("No hay proyectos")
+    def mostrar_uno(proy: Proyecto):
+        print("\n" + "-"*7 + "DATOS DEL PROYECTO" + "-"*7)
+        print(proy)
+    
+    @staticmethod
+    def mostrar_lista(proys: lsit[Proyecto]):
+        print("\n" + "-"*7 + "PROYECTOS" + "-"*7)
+        if not proys:
+            print("no hay proyectos")
         else:
-            for proyecto in proyectos:
-                print(proyecto)
-        print("-" * 27)
-
-    @staticmethod
-    def formular_edicion(proyecto: Proyecto) -> dict:
-        print(f"\n------- EDITANDO PROYECTO [{proyecto.id_proyecto}] -------")
-        print("Deje en blanco los campos que no desea cambiar.")
-
-        nombre = input(f"Nombre actual ({proyecto.nombre}): ")
-        presupuesto = input(f"Presupuesto actual ({proyecto.presupuesto}): ")
-        fecha = input(f"Fecha actual ({proyecto.fecha_inicio}): ")
-        descripcion = input(
-            f"Descripción actual ({proyecto.descripcion or 'Sin descripción'}): "
-        )
-
-        return {
-            "nombre": nombre.strip() or proyecto.nombre,
-            "presupuesto": presupuesto.strip() or proyecto.presupuesto,
-            "fecha_inicio": fecha.strip() or proyecto.fecha_inicio,
-            "descripcion": descripcion.strip() or proyecto.descripcion
-        }
-
-    @staticmethod
-    def confirmar_eliminacion(nombre: str) -> bool:
-        return confirmar(
-            f"¿Seguro que desea eliminar el proyecto '{nombre}'?"
-        )
-
-    @staticmethod
-    def formular_asignacion() -> dict:
-        print("\n------- ASIGNAR EMPLEADO A PROYECTO -------")
-        id_proyecto = leer_numero("Ingrese el ID del proyecto: ")
-        id_empleado = leer_numero("Ingrese el ID del empleado que desea asignar: ")
-
-        return {
-            "id_proyecto": id_proyecto,
-            "id_empleado": id_empleado
-        }
+            for proy in proys:
+                print(proy)
+    

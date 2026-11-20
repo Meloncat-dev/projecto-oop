@@ -50,7 +50,7 @@ class Empleado_dao:
                 rut = ?,
                 email = ?,
                 id_departamento = ? WHERE id_empleado = ?
-            """, (empleado.nombre, empleado.rut, empleado.email, dpto_id))
+            """, (empleado.nombre, empleado.rut, empleado.email, dpto_id, empleado.id_empleado))
             conn.commit()
             return cursor.rowcount > 0
         except Exception as e:
@@ -98,7 +98,7 @@ class Empleado_dao:
                 nombre,
                 rut,
                 email,
-                id_empleado
+                id_departamento
                 FROM empleado""")
             filas = cursor.fetchall()
             for fila in filas:
