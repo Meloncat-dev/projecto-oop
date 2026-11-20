@@ -83,6 +83,15 @@ class Database:
                     ON DELETE RESTRICT
                 )
             """)
+
+            cursor.execute("""
+                CREATE TABLE IF NOT EXISTS usuario (
+                moneda TEXT NOT NULL,
+                valor REAL NOT NULL,
+                fecha DATE NOT NULL
+            )
+            """)
+
             
             conn.commit()
         except sqlite3.Error as e:
