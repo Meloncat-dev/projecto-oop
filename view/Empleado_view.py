@@ -25,13 +25,13 @@ class Empleado_view:
         print(f"[Empleados]: {msg}")
     
     @staticmethod
-    def formulario_creacion_empleado(depas: lsit[Departamento]) -> dict:
+    def formulario_creacion_empleado(depas: list[Departamento]) -> dict:
         print("\n" + "-"*7 + "AGREGAR EMPLEADO" + "-"*7)
         nombre = input("ingrese el nombre del empleado")
         rut = input("ingrese un rut (xxxxxxxx-x(el caracter despues del guion puede ser numerico o letra)): ")
         email = input("ingrese un email (ejemplo@mail.dominio): ")
         
-        print("-"*4 "LISTA DE DEPARTAMENTOS" + "-"*4)
+        print("-"*4 + "LISTA DE DEPARTAMENTOS" + "-"*4)
         if depas:
             for d in depas:
                 print(d)

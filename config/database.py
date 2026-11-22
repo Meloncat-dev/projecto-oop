@@ -88,7 +88,7 @@ class Database:
                 CREATE TABLE IF NOT EXISTS usuario (
                     id_usuario INTEGER PRIMARY KEY AUTOINCREMENT,
                     username TEXT NOT NULL UNIQUE,
-                    pass_hash TEXT NOT NULL,
+                    password_hash TEXT NOT NULL,
                     nombre_completo TEXT NOT NULL,
                     rol TEXT NOT NULL
                 )

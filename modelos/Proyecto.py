@@ -9,7 +9,7 @@ class Proyecto:
         self.id_proyecto = id_proyecto
         
     def __str__(self):
-        print(
+        return (
             f"nombre: {self.nombre}"
             f"presupuesto: ${self.presupuesto}"
             f"fecha inicio: {self.fecha_inicio}"

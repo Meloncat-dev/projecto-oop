@@ -66,7 +66,7 @@ class Empleado:
     def __str__(self):
         departamento = (self.departamento.nombre if self.departamento is not None else "nil")
         
-        print(f"ID: {self.id_empleado} \n"
+        return (f"ID: {self.id_empleado} \n"
               f"Nombre: {self.nombre} \n"
               f"RUT: {self.rut} \n"
               f"email: {self.email} \n"

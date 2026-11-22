@@ -11,7 +11,7 @@ class RegistroHora:
         self.id = id_registro
     
     def __str__(self):
-        print(
+        return (
             f"empleado: {self.empleado.nombre}"
             f"proyecto: {self.proyecto.nombre}"
             f"fecha: {self.fecha}"

@@ -66,7 +66,7 @@ class Proyecto_view:
         print(proy)
     
     @staticmethod
-    def mostrar_lista(proys: lsit[Proyecto]):
+    def mostrar_lista(proys: list[Proyecto]):
         print("\n" + "-"*7 + "PROYECTOS" + "-"*7)
         if not proys:
             print("no hay proyectos")

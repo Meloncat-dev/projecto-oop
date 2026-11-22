@@ -23,7 +23,7 @@ class Resgistro_hora_view:
         print(f"[Registros Hora]: {msg}")
         
     @staticmethod
-    def formular_registro_hora(emps: lsit[Empleado], proys: list[Proyecto]) -> dict:
+    def formular_registro_hora(emps: list[Empleado], proys: list[Proyecto]) -> dict:
         print("\n" + "-"*7 + "AGREGAR REGISTRO DE HORAS" + "-"*7)
         print("-"*12 + "LISTA EMPLEADOS" + "-"*12)
         

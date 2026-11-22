@@ -2,8 +2,7 @@ import sqlite3
 from sqlite3 import Cursor
 from config.database import Database
 from config.settings import Settings
-from models.usuario import Usuario
-
+from modelos.Usuario import Usuario
 class UsuarioDAO:
     """
     Data Access Object para la entidad Usuario.
@@ -48,7 +47,7 @@ class UsuarioDAO:
             if fila:
                 usuario = Usuario(
                     username=fila["username"],
-                    password_hash=fila["password_hash"],
+                    pass_hash=fila["password_hash"],
                     nombre_completo=fila["nombre_completo"],
                     rol=fila["rol"],
                     id_usuario=fila["id_usuario"]
@@ -73,7 +72,7 @@ class UsuarioDAO:
             if fila:
                 usuario = Usuario(
                     username=fila["username"],
-                    password_hash=fila["password_hash"],
+                    pass_hash=fila["password_hash"],
                     nombre_completo=fila["nombre_completo"],
                     rol=fila["rol"],
                     id_usuario=fila["id_usuario"]
@@ -97,7 +96,7 @@ class UsuarioDAO:
                 usuarios.append(
                     Usuario(
                         username=fila["username"],
-                        password_hash=fila["password_hash"],
+                        pass_hash=fila["password_hash"],
                         nombre_completo=fila["nombre_completo"],
                         rol=fila["rol"],
                         id_usuario=fila["id_usuario"]
@@ -132,10 +131,10 @@ class UsuarioDAO:
         usuarios_existentes = cls.obtener_todos()
         if not usuarios_existentes:
             try:
-                hash_inicial = Usuario.encriptar_credencial(Settings.ADMIN_INITIAL_CLAVE)
+                hash_inicial = Usuario.encriptar_contra(Settings.ADMIN_INITIAL_CLAVE)
                 admin_default = Usuario(
                     username=Settings.ADMIN_INITIAL_USER,
-                    password_hash=hash_inicial,
+                    pass_hash= hash_inicial,
                     nombre_completo="Administrador Del Sistema",
                     rol="Administrador"
                 )
