@@ -2,7 +2,7 @@ from modelos import Departamento
 
 class Empleado:
     MAILPROV = ["gmail.com", "outlook.com", "yahoo.com"]
-    def __init__(self, nombre: str, rut: str, email: str, id_empleado: int, departamento: Departamento.Departamento | None = None):
+    def __init__(self, nombre: str, rut: str, email: str, departamento: Departamento.Departamento | None = None, id_empleado: int | None = None):
         self.nombre = nombre
         self.rut = rut
         self.email = email

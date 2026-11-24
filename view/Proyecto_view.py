@@ -24,53 +24,78 @@ class Proyecto_view:
         print(f"[Proyectos]: {msg}")
 
     @staticmethod
-    def formular_proyecto():
-        print("\n" + "-"*7 + "AGREGAR PROYECTO" + "-"*7)
-        nombre = input("ingrese un nombre: ")
-        presupuesto = leer_numero("ingrese un presupuesto: ")
-        fecha_inicio = input("ingrese una fecha: ")
-        descripcion = input("describa el proyecto: ")
+    def formular_proyecto() -> dict:
+        print("\n-------AGREGAR PROYECTO-------")
+        nombre = input("ingresa un nombre para el proyecto: ")
+        presupuesto = leer_numero("ingrese un presupuesto para el proyecto: ")
+        fecha = input("ingrese la fecha del comienzo del proyecto: ")
+        descripcion = input("describa en pocas palabras el proyecto: ")
         
         return {
             "nombre": nombre,
             "presupuesto": presupuesto,
-            "fecha inicio": fecha_inicio,
+            "fecha inicio": fecha,
             "descripcion": descripcion
         }
     
     @staticmethod
-    def formular_actualizacion(proyect: Proyecto):
-        print("\n" + "-"*7 + "ACTUALIZAR PROYECTO" "-"*7)
-        nuevo_nombre = input(f"nombre actual ({proyect.nombre}): ")
+    def formular_edicion(proy: Proyecto) -> dict:
+        nuevo_nombre = input("ingrese un nuevo nombre para el proyecto: ")
         
-        nuevo_presupuesto = leer_numero(f"presupuesto actual (${proyect.presupuesto}): ")
+        try:
+            nuevo_nombre = nuevo_nombre if nuevo_nombre.strip() and len(nuevo_nombre) >= 3 else proy.nombre
+        except ValueError:
+            nuevo_nombre = proy.nombre
         
-        nueva_fecha_inicio = input(f"fecha actual ({proyect.fecha_inicio})")
+        nuevo_presupuesto = leer_numero("ingrese el nuevo presupuesto: ")
         
-        nueva_descripcion = input(f"descripcion actual ({proyect.descripcion})")
+        try:
+            nuevo_presupuesto = nuevo_presupuesto if isinstance(nuevo_presupuesto, int) else proy.presupuesto
+        except TypeError:
+            nuevo_presupuesto = proy.presupuesto
         
+        nueva_fecha = input("ingrese la nueva fecha de inicio: ")
+        
+        try:
+            nueva_fecha = nueva_fecha if nueva_fecha.strip() and len(nueva_fecha) == 10 and nueva_fecha.count("/") == 2 else proy.fecha_inicio
+        except ValueError:
+            nueva_fecha = proy.fecha_inicio
+        
+        nueva_descripcion = input("ingrese la nueva descripcion(trate de que sea breve): ")
+        
+        try:
+            nueva_descripcion = nueva_descripcion if nueva_descripcion.strip() else proy.descripcion
+        except ValueError:
+            nueva_descripcion = proy.descripcion
+            
         return {
             "nombre": nuevo_nombre,
             "presupuesto": nuevo_presupuesto,
-            "fecha inicio": nueva_fecha_inicio,
+            "fecha": nueva_fecha,
             "descripcion": nueva_descripcion
         }
+        
+    @staticmethod
+    def solicitar_id() -> int:
+        return leer_numero("ingrese un ID: ")
     
     @staticmethod
-    def confirmar_eliminacion(proyecto: Proyecto) -> bool:
-        return confirmar(f"desea eliminar el proyecto {proyecto.nombre}: ")
+    def confirmar_eliminacion(proy: Proyecto) -> bool:
+        return confirmar(f"esta seguro de eliminar el proyecto '{proy.nombre}': ")
     
     @staticmethod
-    def mostrar_uno(proy: Proyecto):
-        print("\n" + "-"*7 + "DATOS DEL PROYECTO" + "-"*7)
+    def mostrar_proyecto(proy: Proyecto) -> None:
+        print("\n-------DATOS DEL PROYECTO-------")
         print(proy)
+        print("-"*32)
     
     @staticmethod
-    def mostrar_lista(proys: list[Proyecto]):
-        print("\n" + "-"*7 + "PROYECTOS" + "-"*7)
+    def mostrar_lista(proys: list[Proyecto]) -> None:
+        print("\n-------PROYECTOS-------")
         if not proys:
             print("no hay proyectos")
         else:
-            for proy in proys:
-                print(proy)
-    
+            for p in proys:
+                print(p)
+                print("-"*23)
+            

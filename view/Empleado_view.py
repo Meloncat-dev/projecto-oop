@@ -53,6 +53,11 @@ class Empleado_view:
         print("\n" + "-"*7 + "EDITANDO DEPARTAMENTO" + "-"*7)
         print("-"*7 + "DEJE EN BLANCO SI NO QUIERE CAMBIAR" + "-"*7)
         nuevo_nombre = input(f"nombre actual ({emp.nombre}): ")
+        try:
+            nuevo_nombre = nuevo_nombre if nuevo_nombre.strip() and len(nuevo_nombre) >= 3 else emp.nombre
+        except ValueError("el nombre no puede estar vacio ni ser mas corto que 3 caracteres"):
+            nuevo_rut = emp.nombre
+            
         
         nuevo_rut = input(f"rut actual ({emp.rut}): ")
         try:
@@ -66,10 +71,13 @@ class Empleado_view:
         except ValueError:
             nuevo_email = emp.email
             
+        id_dep = emp.departamento.id_departamento
+            
         return {
             "nombre": nuevo_nombre,
             "rut": nuevo_rut,
-            "email": nuevo_email
+            "email": nuevo_email,
+            "id depa": id_dep
         }
     
     @staticmethod
@@ -87,7 +95,11 @@ class Empleado_view:
             for emp in emps:
                 print(emp)
         print("-"*23)
-            
+    
+    @staticmethod
+    def pedir_id() -> int:
+        return leer_numero("ingrese un ID: ")
+    
     @staticmethod
     def confirmar_eliminacion(empleado: str):
         return confirmar(f"seguro de que quiere eliminar a {empleado}: ")
