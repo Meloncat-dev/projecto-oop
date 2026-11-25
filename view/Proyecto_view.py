@@ -1,6 +1,7 @@
 from modelos.utils import leer_numero, confirmar
 from modelos.Proyecto import Proyecto
-
+from modelos.Proyecto_dao import Proyecto_dao
+from view.Empleado_view import Empleado_view
 
 class Proyecto_view:
 
@@ -87,7 +88,9 @@ class Proyecto_view:
     def mostrar_proyecto(proy: Proyecto) -> None:
         print("\n-------DATOS DEL PROYECTO-------")
         print(proy)
-        print("-"*32)
+        print("-------EMPLEADOS-------")
+        emps = Proyecto_dao.obtener_empleados(proy)
+        Empleado_view.mostrar_lista(emps)
     
     @staticmethod
     def mostrar_lista(proys: list[Proyecto]) -> None:
@@ -97,5 +100,7 @@ class Proyecto_view:
         else:
             for p in proys:
                 print(p)
-                print("-"*23)
-            
+                print("-------EMPLEADOS-------")
+                emps = Proyecto_dao.obtener_empleados(p)
+                
+                

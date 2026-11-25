@@ -1,6 +1,8 @@
 from sqlite3 import Cursor
 from config.database import Database
 from modelos.Proyecto import Proyecto
+from modelos.Empleado import Empleado
+from modelos.Departamento_dao import Departamento_dao
 
 class Proyecto_dao:
     @staticmethod
@@ -117,14 +119,14 @@ class Proyecto_dao:
             conn.close()
             
     @staticmethod
-    def asignar_empleado(id_empleado: int, id_proyecto: int) -> bool:
+    def asignar_empleado(empleado: Empleado, proyecto: Proyecto) -> bool:
         conn = Database().get_connection()
         try:
             cursor: Cursor = conn.cursor()
             cursor.execute("""
                 INSERT INTO asignacion_proyecto (id_empleado, id_proyecto)
                 VALUES (?, ?)
-            """, (id_empleado, id_proyecto))
+            """, (empleado.id_empleado, proyecto.id_proyecto))
             conn.commit()
             return True
 
@@ -134,3 +136,34 @@ class Proyecto_dao:
 
         finally:
             conn.close()
+        
+    @staticmethod    
+    def obtener_empleados(proy: Proyecto) -> list[Empleado]:
+        conn = Database().get_connection()
+        emps: list[Empleado] = []
+        try:
+            cursor: Cursor = conn.cursor()
+            cursor.execute("""
+                SELECT e.*
+                FROM empleado e
+                JOIN asignacion_proyecto ap
+                    ON e.id_empleado = ap.id_empleado
+                WHERE ap.id_proyecto = ?
+            """, (proy.id_proyecto,))
+            filas = cursor.fetchall()
+            for fila in filas:
+                if fila["id_departamento"] is not None:
+                    departamento = Departamento_dao.obtener_por_id(fila["id_departamento"])
+                    
+                emps.append(Empleado(
+                    fila["nombre"],
+                    fila["rut"],
+                    fila["email"],
+                    departamento,
+                    fila["id_empleado"]
+                ))
+        except Exception as e:
+            print(f"err:: no se pudieron obtener los empleados::err = {e}")
+        finally:
+            conn.close()
+    

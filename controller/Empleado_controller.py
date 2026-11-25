@@ -92,7 +92,14 @@ class Empleado_controller:
             self.view.mensaje("operacion cancelada")
     
     def imprimir_uno(self):
-        pass
+        id = self.view.pedir_id()
+        emp = Empleado_dao.obtener_por_id(id)
+        if emp:
+            self.view.mostrar_uno(emp)
+        else:
+            self.view.mensaje("no se pudo imprimir al empleado")
     
     def imprimir_todo(self):
-        pass
+        emps = Empleado_dao.obtener_todos()
+        
+        self.view.mostrar_lista(emps)

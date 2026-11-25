@@ -1,7 +1,9 @@
 from modelos.utils import leer_numero, confirmar
 from modelos.RegistroHora import RegistroHora
 from modelos.Empleado import Empleado
+from modelos.Empleado_dao import Empleado_dao
 from modelos.Proyecto import Proyecto
+from modelos.Proyecto_dao import Proyecto_dao
 
 class Resgistro_hora_view:
     @staticmethod
@@ -37,7 +39,7 @@ class Resgistro_hora_view:
         
         emp_op = leer_numero("que empleado va a elegir: ")
         emp_id = emp_op if emps or emp_op > 0 else None
-        
+                
         print("-"*12 + "LISTA PROYECTOS" + "-"*12)
         
         if proys:
@@ -60,7 +62,7 @@ class Resgistro_hora_view:
             "empleado": emp_id,
             "proyecto": proy_id,
             "fecha": fecha,
-            "horas trabajadas": horas,
+            "horas": horas,
             "descripcion": descripcion            
         }
         
@@ -113,6 +115,14 @@ class Resgistro_hora_view:
             nueva_descripcion = nueva_descripcion if nueva_descripcion.strip() else register.descripcion_tarea
         except ValueError:
             nueva_descripcion = register.descripcion_tarea
+            
+        return {
+            "empleado": nuevo_emp_id,
+            "proyecto": nuevo_proy_id,
+            "fecha": nueva_fecha,
+            "horas": nueva_hora,
+            "descripcion": nueva_descripcion
+        }
         
     
     @staticmethod
