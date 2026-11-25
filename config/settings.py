@@ -9,9 +9,12 @@ except ImportError:
     pass
 
 class Settings:
-    API_BASE_URL: str = os.getenv("API_BASE_URL", "https://fxapi.app/api/eur/clp.json")
-    API_KEY: str = os.getenv("API_KEY", "")
-    REQUEST_TIMEOUT: int = int(os.getenv("REQUEST_TIMEOUT", "5"))
+    WEATHER_API_URL: str = os.getenv("WEATHER_API_URL", "https://fxapi.app/api/eur/clp.json")
+    CURRENCY_API_URL: str = os.getenv(
+        "CURRENCY_API_URL",
+        "https://api.frankfurter.dev/v1/latest"
+    )
+    REQUEST_TIMEOUT: int = int(os.getenv("REQUEST_TIMEOUT", "10"))
     ENABLE_OFFLINE_FALLBACK: bool = os.getenv("ENABLE_OFFLINE_FALLBACK", "True").lower() in ("true", "1", "yes")
 
     ADMIN_INITIAL_USER: str = os.getenv("ADMIN_INITIAL_USER", "admin")

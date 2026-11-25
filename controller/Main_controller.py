@@ -5,6 +5,8 @@ from controller.Departamento_controller import Departamento_controller
 from controller.Proyecto_controller import Proyecto_controller
 from controller.Registro_hora_controller import Registro_hora_controller
 from modelos.Usuario import Usuario
+from services.weather_service import weather_service
+from services.currency_service import currency_service
 
 class Main_controller:
     def __init__(self):
@@ -36,6 +38,10 @@ class Main_controller:
                 case 4:
                     self.registro_hora.ejecutar()
                 case 5:
+                    self.clima()
+                case 6:
+                    self.cambio()
+                case 7:
                     self.auth.ejecutar()
                 case 9:
                     self.view.mensaje(f"cerrando la secion de '{self.user_act.username}'...")
@@ -48,3 +54,28 @@ class Main_controller:
                     break
                 case _:
                     self.view.mensaje("opcion invalida")
+                
+    def clima(self):
+        latitud: float = float(input("ingrese la latitud: "))
+        longitud: float = float(input("ingrese la longitud: "))
+        
+        clima, msg = weather_service.obtener_clima(latitud, longitud)
+        
+        print(msg)
+        
+        if clima:
+            print(f"Temperatura: {clima['temperatura']} C°")
+            print(f"Condicion: {clima['condicion']}")
+    
+    def cambio(self):
+        moneda_base = input("ingrese la moneda base: ")
+        moneda_destino = input("ingrese la moneda destino")
+        
+        cambio, mensaje = currency_service.obtener_tipo_cambio(moneda_base, moneda_destino)
+        
+        print(mensaje)
+        
+        if cambio:
+            print(f"1{cambio['moneda_base']} = "
+                f"{cambio['tasa']} {cambio['moneda_destino']}"
+            )

@@ -9,7 +9,9 @@ class Main_view:
         print("|" + " "*8 + "2. Gestion de Departamentos" + " "*7 + "|")
         print("|" + " "*8 + "3. Gestion de Proyectos" + " "*11 + "|")
         print("|" + " "*8 + "4. Gestion de Registros de hora" + " "*3 + "|")
-        print("|" + " "*8 + "5. Gestion de Usuarios" + " "*12 + "|")
+        print("|" + " "*8 + "5. Clima" + " "*26 + "|")
+        print("|" + " "*8 + "6. Cambio moneda" + " "*18 + "|")
+        print("|" + " "*8 + "7. Gestion de Usuarios" + " "*12 + "|")
         print("|" + " "*8 + "0. salir" + " "*26 + "|")
         print("#"*7 + "-"*30 + "#"*7)
         
